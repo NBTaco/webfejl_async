@@ -1,0 +1,135 @@
+/* Alapbeállítások */
+body {
+    margin: 0;
+    padding: 2rem;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #000;
+    color: #00ff00;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    gap: 2rem;
+    position: relative;
+}
+
+/* Mátrixos háttér: függőleges szaggatott vonalak hullanak lefelé */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background-image:
+    repeating-linear-gradient(
+      90deg,                        /* függőleges vonalak */
+      transparent 0 12px,
+      rgba(0, 255, 0, 0.15) 12px 14px,
+      transparent 14px 16px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 16px,
+      rgba(0, 255, 0, 0.1) 16px,
+      rgba(0, 255, 0, 0.1) 17px,
+      transparent 17px,
+      transparent 18px
+    );
+
+  background-size: 6px 60px, 6px 18px;
+  animation: matrix-fall 4s linear infinite;
+}
+
+/* Animáció a háttér mintázat lefelé mozgására */
+@keyframes matrix-fall {
+  0% {
+    background-position: 0 0, 0 0;
+  }
+  100% {
+    background-position: 0 60px, 0 18px;
+  }
+}
+
+/* Formok egymás mellett */
+form {
+    background: rgba(0, 25, 0, 0.85);
+    border: 1px solid #00ff00;
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 0 15px #00ff00aa;
+    max-width: 320px;
+    flex-shrink: 0;
+}
+
+/* Címsor */
+h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 8px #00ff00;
+}
+
+/* Label és input */
+label {
+    display: block;
+    margin-top: 1rem;
+    font-weight: bold;
+    text-shadow: 0 0 4px #00ff00cc;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.3rem;
+    border: 1px solid #00ff00;
+    background-color: #001100;
+    color: #00ff00;
+    font-family: monospace;
+    font-size: 1rem;
+    border-radius: 6px;
+    box-shadow: inset 0 0 5px #00ff00aa;
+    transition: background-color 0.3s ease;
+}
+
+input[type="text"]:focus {
+    background-color: #003300;
+    outline: none;
+    box-shadow: 0 0 8px #00ff00;
+}
+
+/* Gomb stílusa */
+button {
+    margin-top: 1.5rem;
+    background-color: transparent;
+    border: 2px solid #00ff00;
+    color: #00ff00;
+    font-weight: bold;
+    padding: 0.6rem 1.2rem;
+    cursor: pointer;
+    border-radius: 8px;
+    font-family: monospace;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 5px #00ff00;
+}
+
+button:hover {
+    background-color: #00ff00;
+    color: #000;
+    box-shadow: 0 0 12px #00ff00;
+}
+
+/* Responsive kisebb képernyőkre */
+@media (max-width: 1000px) {
+    body {
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+    }
+    form {
+        max-width: 100%;
+        margin-bottom: 1.5rem;
+    }
+}
